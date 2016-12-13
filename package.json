@@ -8,7 +8,7 @@
     "start-app-server": "nodemon ui/server.js --watch ui --exec babel-node",
     "start": "concurrently \"npm run start-app-client\" \"npm run start-app-server\"",
     "lint": "eslint ui",
-    "build": "webpack -p --progress --config ./webpack.production.config.js",
+    "build": "webpack --progress --config ./webpack.production.config.js",
     "test": "npm run lint"
   },
   "repository": {
@@ -22,6 +22,9 @@
   },
   "homepage": "https://github.com/apollostack/GitHunt#readme",
   "devDependencies": {
+    "@types/chai": "^3.4.34",
+    "@types/react": "^0.14.55",
+    "awesome-typescript-loader": "^3.0.0-beta.13",
     "babel-cli": "^6.8.0",
     "babel-core": "^6.8.0",
     "babel-eslint": "^7.0.0",
@@ -38,11 +41,12 @@
     "eslint-plugin-import": "^1.8.1",
     "eslint-plugin-jsx-a11y": "^2.2.1",
     "eslint-plugin-react": "^6.2.0",
-    "html-webpack-plugin": "^2.22.0",
+    "extract-text-webpack-plugin": "^2.0.0-beta",
     "nodemon": "^1.9.2",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.0",
-    "webpack-dev-server": "^1.14.1"
+    "typescript": "^2.1.4",
+    "webpack": "2.1.0-beta.27",
+    "webpack-dev-server": "2.1.0-beta.12"
   },
   "dependencies": {
     "apollo-client": "^0.5.5",
@@ -62,7 +66,8 @@
     "react-router": "^3.0.0",
     "react-timeago": "^3.0.0",
     "redux": "^3.5.2",
-    "subscriptions-transport-ws": "^0.3.0"
+    "subscriptions-transport-ws": "^0.3.0",
+    "typed-graphql": "^1.0.2"
   },
   "eslintConfig": {
     "env": {

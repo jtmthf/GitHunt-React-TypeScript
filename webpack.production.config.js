@@ -1,5 +1,6 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack');
+const { CheckerPlugin } = require('awesome-typescript-loader');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -7,33 +8,40 @@ module.exports = {
   output: {
     path: 'api/dist/',
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   module: {
     loaders: [{
       test: /\.css/,
-      loader: 'style!css'
+      loader: ExtractTextPlugin.extract({
+        fallbackLoader: 'style-loader',
+        loader: 'css-loader',
+      }),
     }, {
       test: /\.js$/,
-      loader: 'babel',
-      exclude: /node_modules/
+      loader: 'babel-loader',
+      exclude: /(node_modules)/,
+    }, {
+      test: /\.tsx?$/,
+      loader: 'awesome-typescript-loader',
+      exclude: /(node_modules)/,
     }, {
       test: /\.json$/,
-      loader: 'json'
-    }]
+      loader: 'json-loader',
+    }],
   },
   plugins: [
     new webpack.DefinePlugin({
-    'process.env': {
-      'NODE_ENV': JSON.stringify('production')
-    }
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
     }),
-    new HtmlWebpackPlugin({
-      template: 'ui/index.html'
-    }),
-    new webpack.optimize.CommonsChunkPlugin('common.js'),
-    new webpack.optimize.DedupePlugin(),
+    new CheckerPlugin(),
     new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin()
-  ]
-}
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new ExtractTextPlugin('bundle.css'),
+  ],
+};

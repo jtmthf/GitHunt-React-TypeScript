@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "es2015",
+        "target": "es2015",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "strictNullChecks": true
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "awesomeTypescriptLoaderOptions": {
+        "useTranspileModule": true,
+        "useBabel": true,
+        "useCache": true
+    }
+}

@@ -3,3 +3,6 @@ node_modules
 dev.sqlite3
 .env
 .idea/
+.vscode
+api
+.awcache
